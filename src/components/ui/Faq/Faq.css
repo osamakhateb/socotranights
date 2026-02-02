@@ -1,0 +1,155 @@
+.faq-container {
+    padding: 60px 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.faq-content {
+    display: flex;
+    gap: 60px;
+    align-items: stretch;
+}
+
+.faq-left-section {
+    flex: 1.3;
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-intro {
+    text-align: center;
+    margin-bottom: 60px;
+
+}
+
+.faq-main-title,
+.faq-subtitle {
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 40px;
+}
+
+.faq-item {
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+}
+
+.faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-question {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+}
+
+.faq-answer {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.faq-right-section {
+    flex: 1;
+    display: flex;
+}
+
+.faq-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.faq-toggle {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.faq-toggle:focus {
+    outline: none;
+}
+
+.faq-toggle-icon {
+    width: 28px;
+    height: 28px;
+    user-select: none;
+    transition: transform 0.25s ease;
+}
+
+.faq-toggle-icon.open {
+    transform: rotate(45deg);
+}
+
+@media (min-width: 1440px) {
+    .faq-container {
+        padding: 80px 40px;
+    }
+
+    .faq-main-title,
+    .faq-subtitle {
+        font-size: 48px;
+    }
+
+    .faq-left-section {
+        flex: 1.2;
+    }
+
+    .faq-right-section {
+        flex: 1;
+    }
+}
+
+@media (max-width: 1440px) and (min-width: 992px) {
+    .faq-container {
+        padding: 70px 30px;
+    }
+
+    .faq-main-title,
+    .faq-subtitle {
+        font-size: 42px;
+    }
+
+    .faq-left-section {
+        flex: 1.3;
+    }
+
+    .faq-right-section {
+        flex: 1;
+    }
+}
+
+@media (max-width: 992px) {
+    .faq-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .faq-left-section,
+    .faq-right-section {
+        flex: 1;
+    }
+
+    .faq-intro {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .faq-main-title,
+    .faq-subtitle {
+        font-size: 32px;
+    }
+
+    .faq-toggle-icon {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,128 @@
+.socotra-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.socotra-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.socotra-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 70px;
+}
+
+.socotra-main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.socotra-text-content {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.socotra-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.socotra-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.socotra-subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.socotra-description {
+    white-space: pre-line;
+    margin-bottom: 2rem;
+}
+
+.socotra-quote {
+    font-style: italic;
+    margin-top: 1.5rem;
+}
+
+.socotra-image img {
+    width: 100%;
+    max-width: 564px;
+    height: auto;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .socotra-container {
+        padding: 0 30px;
+    }
+
+    .socotra-image img {
+        max-width: 500px;
+        aspect-ratio: 564 / 317;
+    }
+}
+
+@media (min-width: 1025px) {
+    .socotra-container {
+        max-width: 1280px;
+        padding: 0 30px;
+    }
+
+    .socotra-image img {
+        max-width: 564px;
+        height: 317px;
+        aspect-ratio: unset;
+    }
+}
+
+@media (min-width: 768px) {
+    .socotra-container {
+        padding: 0 30px;
+    }
+
+    .socotra-main-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .socotra-text-content {
+        width: 50%;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .socotra-image {
+        width: 50%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    .socotra-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .socotra-container {
+        padding: 0 15px;
+    }
+}

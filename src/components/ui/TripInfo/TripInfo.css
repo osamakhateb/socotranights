@@ -1,0 +1,156 @@
+.trip-info-section {
+    background: #f4efe6;
+    padding: 60px 20px;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.trip-info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.trip-info-main-title {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 60px;
+    color: #1f1f1f;
+}
+
+.trip-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.trip-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #1f1f1f;
+}
+
+.section-title.with-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-icon {
+    display: inline-flex;
+    font-size: 16px;
+    color: #333;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.icon {
+    font-size: 14px;
+    margin-top: 3px;
+    line-height: 1;
+}
+
+.icon.check {
+    color: #6b8e23;
+}
+
+.icon.cross {
+    color: #a94442;
+}
+
+.assistance-box.side {
+    margin-top: 30px;
+    padding: 26px;
+    background: #efe6d8;
+    border-radius: 6px;
+}
+
+.assistance-box.side h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1f1f1f;
+}
+
+.assistance-box.side p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: #444;
+}
+
+.assistance-box.side button {
+    background: transparent;
+    border: 1px solid #000;
+    padding: 8px 22px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.assistance-box.side button:hover {
+    background: #000;
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .trip-info-grid {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trip-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-info-main-title {
+        font-size: 26px;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .assistance-box.side {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .trip-info-section {
+        padding: 40px 15px;
+    }
+
+    .trip-info-main-title {
+        font-size: 22px;
+    }
+
+    .info-item {
+        font-size: 14px;
+    }
+
+    .assistance-box.side {
+        padding: 22px;
+    }
+}
