@@ -1,9 +1,10 @@
 export interface HeroData {
     title: string;
     subtitle: string;
-    buttonText: string;
     backgroundImage: string;
+    buttonText?: string;
 }
+
 
 export const heroContent: HeroData = {
     title: "Discover the Magic of Socotra",

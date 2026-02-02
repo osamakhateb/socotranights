@@ -1,6 +1,7 @@
-import HeroSectionTours from '../components/ui/HeroTours/HeroTours'; 
+import HeroSectionTours from '../components/ui/HeroTours/HeroTours';
 import CardsSection from "../components/ui/CardsSection/CardsSection";
-import { HeroTours } from '../data/home'; 
+import ScrollBtn from '../components/ui/ScrollBtn/ScrollBtn';
+import { HeroTours } from '../data/home';
 
 const Tours = () => {
     const handleBookNow = () => {
@@ -23,6 +24,7 @@ const Tours = () => {
                     { title: "Photography Tour", description: "Capture Socotra's stunning nature." },
                 ]}
             />
+            <ScrollBtn />
         </div>
     );
 };

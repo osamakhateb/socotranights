@@ -4,6 +4,7 @@ import Navbar from './components/ui/Navbar/Navbar'
 import Home from './pages/Home'
 import Tours from './pages/tours'
 import About from './pages/About'
+import ScrollBtn from './components/ui/ScrollBtn/ScrollBtn';
 import Footer from './components/ui/Footer/Footer'
 import colors from './colors'
 
@@ -23,7 +24,8 @@ function App() {
           <Route path="/tours" element={<Tours />} />
           <Route path="/about" element={<About />} />
         </Routes>
-        <Footer/>
+        <Footer />
+        <ScrollBtn />
       </div>
     </Router>
   )

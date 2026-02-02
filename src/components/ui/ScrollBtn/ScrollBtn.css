@@ -1,0 +1,40 @@
+.scroll-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transform: translateY(1rem);
+    opacity: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.scroll-btn.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.scroll-btn:hover {
+    transform: scale(1.05);
+}
+
+.scroll-icon {
+    width: 2rem;
+    height: 2rem;
+    color: #f3f4f6;
+    transition: transform 0.3s ease;
+}
+
+.scroll-btn:hover .scroll-icon {
+    transform: translateY(-0.25rem);
+}
