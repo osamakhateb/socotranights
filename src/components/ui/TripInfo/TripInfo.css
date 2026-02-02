@@ -1,5 +1,5 @@
 .trip-info-section {
-    background: #f4efe6;
+    background: rgba(168, 195, 236, 0.425);
     padding: 60px 20px;
     font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -80,7 +80,7 @@
 .assistance-box.side {
     margin-top: 30px;
     padding: 26px;
-    background: #efe6d8;
+    background: #bababb;
     border-radius: 6px;
 }
 
