@@ -1,23 +1,30 @@
-import React from "react";
-import CardsSection from "../components/ui/CardsSection/CardsSection"; 
+import HeroSectionTours from '../components/ui/HeroTours/HeroTours'; 
+import CardsSection from "../components/ui/CardsSection/CardsSection";
+import { HeroTours } from '../data/home'; 
 
-const About: React.FC = () => {
+const Tours = () => {
+    const handleBookNow = () => {
+        alert('Booking feature coming soon!');
+    };
+
     return (
-        <div>
-            <h1>Welcome to Socotra Nights</h1>
-            <p>Discover the beauty of Socotra Island</p>
+        <div className="tours-page">
+            <HeroSectionTours
+                customData={HeroTours}
+                onBookNow={handleBookNow}
+            />
 
             <CardsSection
-                mainTitle="Our Services"
+                mainTitle="Our Tours"
                 cards={[
-                    { title: "Tour Planning", description: "We help you plan the perfect trip tailored to your preferences." },
-                    { title: "Local Guides", description: "Experienced guides ensure you get the best local insights." },
-                    { title: "Custom Packages", description: "Flexible packages that fit any budget." },
-                    { title: "Support 24/7", description: "Always here to help during your trip." },
+                    { title: "Socotra Adventure", description: "Experience the unique beauty of Socotra." },
+                    { title: "Cultural Journey", description: "Explore the culture and traditions of the island." },
+                    { title: "Island Hikes", description: "Discover hidden trails and scenic landscapes." },
+                    { title: "Photography Tour", description: "Capture Socotra's stunning nature." },
                 ]}
             />
         </div>
     );
 };
 
-export default About;
+export default Tours;

@@ -12,6 +12,17 @@ export const heroContent: HeroData = {
     backgroundImage: "/assets/images/hero/tube.jpg"
 };
 
+export const HeroTours: HeroData = {
+    title: "Our Tours & Experiences",
+    subtitle: "Discover the magic of Socotra Island through our carefully crafted adventures",
+    backgroundImage: "/assets/images/hero/SocotraSection.jpg"
+};
+
+export const HeroAbout: HeroData = {
+    title: "About Socotra Travels",
+    subtitle: "Discover the story behind our passion for sharing Socotra's beauty",
+    backgroundImage: "/assets/images/hero/SocotraSection.jpg"
+};
 
 
 
@@ -32,7 +43,7 @@ We offer tailor-made tours to explore the island's breathtaking beauty, from pri
 
 Book your trip today and let us create an unforgettable adventure for you!`,
     quote: "Socotra’s Secret? A peaceful life built on simplicity, kindness, and human connection",
-    imageUrl: "/assets/images/hero/SocotraSection.jpg", 
+    imageUrl: "/assets/images/hero/SocotraSection.jpg",
 };
 
 
