@@ -1,23 +1,25 @@
-
 import HeroSection from '../components/ui/Hero/HeroSection';
 import SocotraSection from '../components/ui/ExperienceSection/SocotraSection';
 import ToursSection from '../data/ToursSection/ToursSection';
 import Faq from '../components/ui/Faq/Faq';
 import TripInfo from '../components/ui/TripInfo/TripInfo';
 import CardsSection from '../components/ui/CardsSection/CardsSection';
-import { FaMapMarkerAlt, FaDollarSign, FaBook, FaCheckCircle } from "react-icons/fa";
+import ContactForm from '../components/ui/ContactForm/ContactForm';
+import { toursContactForm } from '../data/contactData/contactFormData';
 import { heroContent } from '../data/home';
 
-const cardsData = [
-    { title: "Local Expertise", description: "Native Socotri guides with deep knowledge of the island's culture.", icon: <FaMapMarkerAlt /> },
-    { title: "Best Prices", description: "Competitive pricing with transparent costs.", icon: <FaDollarSign /> },
-    { title: "Diverse Tours", description: "Multiple tour options from group experiences to VIP retreats.", icon: <FaBook /> },
-    { title: "Excellent Service", description: "Dedicated support throughout your journey.", icon: <FaCheckCircle /> },
-];
+import { cardsData } from '../data/homeCardsData';
 
 const Home = () => {
+    const homeCards = cardsData.home;
+
     const handleBookNow = () => {
         alert('Booking feature coming soon!');
+    };
+    //هاد مشان ارسال الرسالة
+    const handleFormSubmit = (formData: Record<string, string>) => {
+        console.log('Home form submitted:', formData);
+        alert('Thank you for your message! We will contact you soon.');
     };
 
     return (
@@ -26,15 +28,22 @@ const Home = () => {
                 customData={heroContent}
                 onBookNow={handleBookNow}
             />
+
             <div className="content-wrapper">
                 <SocotraSection />
                 <ToursSection />
-                <Faq />
                 <TripInfo />
+                <Faq />
+
                 <CardsSection
-                    mainTitle="Why Choose Us?"
-                    mainDescription="We are a team of passionate locals dedicated to sharing the beauty of Socotra with the world"
-                    cards={cardsData}
+                    mainTitle={homeCards.title}
+                    mainDescription={homeCards.description}
+                    cards={homeCards.cards}
+                />
+
+                <ContactForm
+                    {...toursContactForm}
+                    onSubmit={handleFormSubmit}
                 />
             </div>
         </div>

@@ -1,0 +1,231 @@
+.contact-form-container {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 2rem 30px;
+    width: 100%;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-title {
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.form-description {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.contact-form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-fields.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-fields.horizontal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.form-fields.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.required-star {
+    color: #dc3545;
+}
+
+.form-input {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-input.error {
+    border-color: #dc3545;
+}
+
+.form-input::placeholder {
+    color: #94a3b8;
+}
+
+textarea.form-input {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5em;
+    padding-right: 2.5rem;
+}
+
+.submit-button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.submit-button:hover:not(:disabled) {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.submit-button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+.submit-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.success-message {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 1440px) {
+    .contact-form-container {
+        max-width: 1140px;
+        padding: 2rem 25px;
+    }
+
+    .form-title {
+        font-size: 2.25rem;
+    }
+
+    .form-description {
+        font-size: 1.05rem;
+        max-width: 550px;
+    }
+
+    .contact-form {
+        padding: 2.25rem;
+    }
+
+    .form-fields.grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .contact-form-container {
+        max-width: 960px;
+        padding: 1.75rem 20px;
+    }
+
+    .form-title {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .form-description {
+        font-size: 1rem;
+        max-width: 500px;
+        line-height: 1.5;
+    }
+
+    .contact-form {
+        padding: 2rem;
+        border-radius: 10px;
+    }
+
+    .form-fields.vertical {
+        gap: 1.25rem;
+    }
+
+    .form-fields.horizontal {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .form-fields.grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .form-input {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.95rem;
+    }
+
+    textarea.form-input {
+        min-height: 100px;
+    }
+
+    .submit-button {
+        padding: 0.875rem 2rem;
+        font-size: 0.95rem;
+        margin-top: 1.75rem;
+    }
+
+    .success-message {
+        padding: 0.875rem;
+        font-size: 0.95rem;
+    }
+}

@@ -48,9 +48,6 @@ Book your trip today and let us create an unforgettable adventure for you!`,
 };
 
 
-
-
-
 const FaqData = [
     {
         question: "What services does SquareUp provide?",
@@ -71,3 +68,14 @@ export default FaqData;
 
 
 
+
+export interface ImageCard {
+    id: number;
+    image: string;
+}
+
+export interface CardsSectionData {
+    title: string;
+    description?: string;
+    cards: ImageCard[];
+}

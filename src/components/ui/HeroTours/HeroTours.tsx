@@ -8,6 +8,7 @@ interface HeroProps {
         subtitle?: string;
         buttonText?: string;
         backgroundImage?: string;
+
     };
     onBookNow?: () => void;
 }
