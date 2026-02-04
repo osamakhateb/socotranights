@@ -70,7 +70,7 @@
 
 .language-buttons {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 
 .lang-btn {
@@ -83,6 +83,7 @@
     align-items: center;
     gap: 8px;
     transition: all 0.2s ease;
+    color:#ffffff;
 }
 
 .lang-btn:hover {
@@ -110,6 +111,7 @@
     .nav-items,
     .navbar-right {
         display: none;
+        
     }
 
     .hamburger {
@@ -117,24 +119,28 @@
     }
 
     .mobile-menu {
-        position: absolute;
+        position: fixed;
         top: 80px;
         left: 0;
-        right: 0;
-        background-color: inherit;
+        width: 100%;
+        height: 100%;
+        font-size: 40px;
+        background-color: #181e38d6;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 120px;
-        padding: 20px 0;
-        z-index: 999;
-        background-color: #232a49a9;
+        justify-content: flex-start;
+        padding-top: 80px;
+        gap: 90px;
+        z-index: 9999;
     }
+
+
 
     .mobile-nav-items {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 30px;
         list-style: none;
         padding: 0;
         margin: 0;
@@ -143,8 +149,12 @@
 
     .mobile-language-buttons {
         display: flex;
-        gap: 10px;
+        gap: 40px;
     }
+    .lang-btn{
+        font-size: 40px;
+    }
+    
 }
 
 

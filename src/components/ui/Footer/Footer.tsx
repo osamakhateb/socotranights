@@ -4,12 +4,22 @@ import {
     FaTwitter,
     FaWhatsapp
 } from 'react-icons/fa';
+import { SiTelegram, SiVk } from 'react-icons/si';
 import { useFooter } from '../../hooks/useFooter';
 import './Footer.css';
 
 interface FooterProps {
     apiUrl?: string;
 }
+
+const socialIcons: Record<string, JSX.Element> = {
+    whatsapp: <FaWhatsapp />,
+    telegram: <SiTelegram />,
+    instagram: <FaInstagram />,
+    vk: <SiVk />,
+    facebook: <FaFacebookF />,
+    twitter: <FaTwitter />,
+};
 
 const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
     const { data } = useFooter(apiUrl);
@@ -19,7 +29,6 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
             <div className="footer-container">
 
                 <div className="footer-top">
-                    {/* LEFT */}
                     <div className="footer-left">
                         <p className="footer-description">
                             {data.title}
@@ -34,15 +43,12 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
                                     rel="noopener noreferrer"
                                     className={`social ${link.platform}`}
                                 >
-                                    {link.platform === 'facebook' && <FaFacebookF />}
-                                    {link.platform === 'instagram' && <FaInstagram />}
-                                    {link.platform === 'twitter' && <FaTwitter />}
+                                    {socialIcons[link.platform] || null}
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* CENTER */}
                     <div className="footer-center">
                         <img
                             src={data.logo?.url}
@@ -51,7 +57,6 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
                         />
                     </div>
 
-                    {/* RIGHT */}
                     <div className="footer-right">
                         <div className="contact-row">
                             <FaWhatsapp />

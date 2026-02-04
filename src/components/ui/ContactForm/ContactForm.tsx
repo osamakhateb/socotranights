@@ -79,7 +79,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         setErrors(newErrors);
 
         if (!isValid) return;
-
+            //هون انا فيني ضيف الapi
         if (apiEndpoint) {
             try {
                 const response = await fetch(apiEndpoint, {
@@ -202,4 +202,4 @@ const ContactForm: React.FC<ContactFormProps> = ({
     );
 };
 
-export default ContactForm; // تصدير افتراضي فقط
+export default ContactForm; 

@@ -11,11 +11,11 @@ const defaultFooterData: FooterData = {
         phoneLabel: "WhatsApp",
         emailLabel: "Email"
     },
-
     socialLinks: [
-        { platform: 'facebook', url: '#' },
+        { platform: 'whatsapp', url: '#' },
+        { platform: 'telegram', url: '#' },
         { platform: 'instagram', url: '#' },
-        { platform: 'twitter', url: '#' }
+        { platform: 'vk', url: '#' }
     ],
 
     copyrightText: "© 2026 Socotra Nights. All rights reserved.",
