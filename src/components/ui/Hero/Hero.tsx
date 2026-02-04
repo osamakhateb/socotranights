@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { HeroTours as heroData } from '../../../data/home';
 import './HeroTours.css';
 
@@ -34,3 +34,38 @@ const HeroSectionTours: React.FC<HeroProps> = ({ customData, onBookNow }) => {
 };
 
 export default HeroSectionTours;
+ */
+
+import React from 'react';
+import './Hero.css';
+
+interface HeroData {
+    title: string;
+    subtitle: string;
+    backgroundImage: string;
+}
+
+interface HeroProps {
+    data: HeroData;
+    onBookNow?: () => void;
+}
+
+const HeroSection: React.FC<HeroProps> = ({ data, onBookNow }) => {
+    return (
+        <section
+            className="hero-section"
+            style={{
+                backgroundImage: `url(${data.backgroundImage})`,
+            }}
+        >
+            <div className="hero-overlay">
+                <div className="hero-content">
+                    <h1 className="hero-title">{data.title}</h1>
+                    <p className="hero-subtitle">{data.subtitle}</p>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default HeroSection;
