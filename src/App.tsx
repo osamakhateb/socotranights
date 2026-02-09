@@ -1,7 +1,6 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-
 import Navbar from './components/ui/Navbar/Navbar'
 import Home from './pages/Home'
 import Tours from './pages/tours'
@@ -22,7 +21,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <Router>
+    <>
       <ScrollToTop />
 
       <div className="App">
@@ -42,7 +41,7 @@ function App() {
         <Footer />
         <ScrollBtn />
       </div>
-    </Router>
+    </>
   )
 }
 

@@ -130,6 +130,8 @@ const ToursSection = () => {
       description: "Immerse yourself in Socotra's wild beauty with elevated comfort.",
       features: [
         "Turkish cotton linens",
+        "Turkish cotton linens",
+        "Turkish cotton linens",
         "Soft duvets and two pillows per person"
       ],
       price: "Starting from $2,400 USD per person",
