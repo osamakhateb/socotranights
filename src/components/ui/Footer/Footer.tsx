@@ -7,6 +7,7 @@ import {
 import { SiTelegram, SiVk } from 'react-icons/si';
 import { useFooter } from '../../hooks/useFooter';
 import './Footer.css';
+import type { JSX } from 'react';
 
 interface FooterProps {
     apiUrl?: string;

@@ -1,5 +1,5 @@
 export interface SocialLink {
-    platform: 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'linkedin' | 'tiktok';
+    platform: 'facebook' | 'instagram' | 'twitter' | 'youtube' | 'linkedin' | 'tiktok' | 'whatsapp' | 'telegram' | 'vk'; // أضف الأنواع هنا
     url: string;
     ariaLabel?: string;
 }

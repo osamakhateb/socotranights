@@ -10,13 +10,17 @@ export interface Faq {
 }
 
 const Faq: React.FC = () => {
-    const [faqs, setFaqs] = useState<Faq[]>(FaqData); 
+    /*  const [faqs, setFaqs] = useState<Faq[]>(FaqData); 
+     const [openIndex, setOpenIndex] = useState<number | null>(null);
+     const [loading, setLoading] = useState<boolean>(false);
+     const [error, setError] = useState<string | null>(null); */
+    const [faqs] = useState<Faq[]>(FaqData);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+    const [loading] = useState<boolean>(false);
+    const [error] = useState<string | null>(null);
 
     useEffect(() => {
-        // 🔒 لما تضيف API فعلي، فك التعليق واحذف FaqData من useState
+        //  لما نضيف API  فك التعليق واحذف FaqData من useState
         /*
         const fetchFaqs = async () => {
             try {

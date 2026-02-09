@@ -65,7 +65,9 @@ const Tours = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
-            const data = await res.json();
+            /* const data = await res.json();*/
+            await res.json(); // ⬅️ بدون تخزين (إذا كنت لا تفحص الرد)
+
             alert('Thank you for your inquiry! We will contact you soon.');
         } catch (error) {
             console.error(error);

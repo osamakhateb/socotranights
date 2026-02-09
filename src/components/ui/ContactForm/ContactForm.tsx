@@ -1,5 +1,6 @@
 
-import React, { useState, FormEvent } from 'react';
+import React, { useState } from 'react';
+import type { FormEvent } from 'react';
 import { type ContactFormData, type FormField } from '../../../data/contactData/contact.types';
 import './ContactForm.css';
 
@@ -79,7 +80,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
         setErrors(newErrors);
 
         if (!isValid) return;
-            //هون انا فيني ضيف الapi
+        //هون انا فيني ضيف الapi
         if (apiEndpoint) {
             try {
                 const response = await fetch(apiEndpoint, {
