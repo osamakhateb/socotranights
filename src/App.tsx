@@ -1,7 +1,6 @@
 import './App.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-
 import Navbar from './components/ui/Navbar/Navbar'
 import Home from './pages/Home'
 import Tours from './pages/tours'
