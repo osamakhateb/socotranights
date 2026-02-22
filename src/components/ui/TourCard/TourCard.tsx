@@ -1,110 +1,93 @@
+import { Link } from "react-router-dom";
 import "./TourCard.css";
 
 interface TourCardProps {
-  image: string;
+  id: number;
   title: string;
   description: string;
-  price: string;
+  price_per_person: string;
   duration: string;
-  setup?: string[];
-  features?: string[];
-  to: string;
-  buttonText?: string;
-  colors: {
-    textDark: string;
-    textGray: string;
-    textMuted: string;
-    blueMain: string;
-    blueDark: string;
-    blueDarker: string;
-    success: string;
-    lightBg: string;
-  };
+  main_image: string;
+  google_map_link: string;
+  is_selectable: number | string; // السماح بأن يكون string أو number
+  created_at?: string;
+  updated_at?: string;
 }
 
 const TourCard = ({
-  image,
+  id,
   title,
   description,
-  price,
+  price_per_person,
   duration,
-  setup = [],
-  features = [],
-  to,
-  buttonText = "BOOK NOW",
-  colors,
+  main_image,
+  google_map_link,
+  is_selectable,
 }: TourCardProps) => {
+  // تحويل القيمة إلى رقم للمقارنة الآمنة
+  const isAvailable = Number(is_selectable) === 1;
+  
+  // للتشخيص - يمكنك إزالته بعد التأكد من العمل
+  console.log(`Tour ${id}: is_selectable =`, is_selectable, '| isAvailable =', isAvailable);
+
   return (
-    <div className="tour-card">
+    <div className={`tour-card ${!isAvailable ? 'tour-card-unavailable' : ''}`}>
       <div className="tour-image-container">
-        <img src={image} alt={title} className="tour-image" />
+        <img src={main_image} alt={title} className="tour-image" />
+        {!isAvailable && (
+          <div className="tour-unavailable-overlay">
+            <span className="soon-badge">SOON</span>
+          </div>
+        )}
       </div>
 
       <div className="tour-content">
-        <h3 className="tour-title" style={{ color: colors.textDark }}>
-          {title}
-        </h3>
+        <h3 className="tour-title">{title}</h3>
+        
+        <p className="tour-description">{description}</p>
 
-        <p className="tour-description" style={{ color: colors.textGray }}>
-          {description}
-        </p>
-
-        {features && features.length > 0 && (
-          <div className="features-section">
-            <ul className="features-list">
-              {features.map((feature, index) => (
-                <li
-                  key={index}
-                  className="feature-item"
-                  style={{ color: colors.textGray }}
-                >
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {setup && setup.length > 0 && (
-          <div
-            className="setup-section"
-            style={{
-              background: colors.lightBg,
-              borderLeft: `4px solid ${colors.blueMain}`,
-            }}
-          >
-            {setup.map((item, index) => (
-              <div
-                key={index}
-                className="setup-item"
-                style={{ color: colors.textDark }}
+        {/* معلومات إضافية من الـ Response */}
+        <div className="tour-additional-info">
+          {google_map_link && (
+            <div className="info-item">
+              <span className="info-label">🗺️ الموقع:</span>
+              <a 
+                href={google_map_link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="map-link"
               >
-                {item}
-              </div>
-            ))}
-          </div>
-        )}
+                عرض على الخريطة
+              </a>
+            </div>
+          )}
+        </div>
 
         <div className="tour-details">
           <div className="price-duration">
-            <div className="tour-price" style={{ color: colors.success }}>
-              {price}
+            <div className="tour-price">
+              {price_per_person} $
             </div>
-            <div className="tour-duration" style={{ color: colors.textMuted }}>
+            <div className="tour-duration">
               {duration}
             </div>
           </div>
 
-          <a href={to} className="book-button">
-            <button
+          {isAvailable ? (
+            <Link 
+              to={`/tour/${id}`}
               className="tour-button"
-              style={{
-                background: `linear-gradient(135deg, ${colors.blueMain}, ${colors.blueDark})`,
-              }}
             >
-              {buttonText}
+              BOOK NOW
+            </Link>
+          ) : (
+            <button 
+              className="tour-button tour-button-disabled"
+              disabled
+            >
+              BOOK NOW
             </button>
-          </a>
+          )}
         </div>
       </div>
     </div>

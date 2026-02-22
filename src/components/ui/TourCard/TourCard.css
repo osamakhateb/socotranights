@@ -1,170 +1,218 @@
 .tour-card {
-  display: flex;
-  background: #3d4775;
-  border-radius: 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+  position: relative;
+  display: flex; /* إضافة flex */
+  flex-direction: row; /* ترتيب أفقي */
+  min-height: 300px; /* ارتفاع ثابت للكارد */
 }
 
 .tour-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.18);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+.tour-card-unavailable {
+  opacity: 0.7;
+  filter: blur(0.5px);
+  pointer-events: none;
+}
+
+.tour-card-unavailable:hover {
+  transform: none;
+  box-shadow: none;
+}
 
 .tour-image-container {
-  width: 38%;
   position: relative;
+  min-height: 100%;
   overflow: hidden;
 }
 
 .tour-image {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.tour-card:not(.tour-card-unavailable):hover .tour-image {
+  transform: scale(1.05);
+}
+
+.tour-unavailable-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
 }
 
-.tour-card:hover .tour-image {
-  transform: scale(1.08);
+.soon-badge {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 .tour-content {
-  width: 62%;
-  padding: 2.8rem;
+  padding: 25px;
+  width: 60%; /* المحتوى يأخذ 60% من عرض الكارد */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .tour-title {
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.25;
+  margin: 0 0 15px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
 }
 
 .tour-description {
-  font-size: 1.05rem;
-  line-height: 1.75;
-  margin-bottom: 1.8rem;
-}
-
-
-.features-section {
-  margin-bottom: 1.8rem;
-}
-
-.features-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.feature-item {
-  position: relative;
-  padding-left: 1.8rem;
-  margin-bottom: 0.6rem;
-  font-size: 1rem;
-}
-
-.feature-item::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  font-weight: 700;
-}
-
-
-.setup-section {
-  padding: 1.4rem;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-}
-
-.setup-item {
-  font-size: 0.95rem;
+  margin: 0 0 20px 0;
+  color: #666;
   line-height: 1.6;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  flex-grow: 1;
 }
 
-.setup-item:last-child {
+.tour-additional-info {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.info-item:last-child {
   margin-bottom: 0;
 }
 
+.info-label {
+  font-weight: 600;
+  color: #333;
+  min-width: 70px;
+}
+
+.map-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.map-link:hover {
+  text-decoration: underline;
+}
 
 .tour-details {
-  margin-top: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
 }
 
 .price-duration {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
 }
 
 .tour-price {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: #2ecc71;
 }
 
 .tour-duration {
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-
-.book-button {
-  text-decoration: none;
-  max-width: 240px;
-  width: 100%;
+  font-size: 0.9rem;
+  color: #777;
 }
 
 .tour-button {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 10px;
+  padding: 12px 30px;
+  background: #2ecc71;
+  color: white;
   border: none;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
 .tour-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  background: #27ae60;
 }
 
+.tour-button-disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
 
-@media (max-width: 992px) {
+.tour-button-disabled:hover {
+  background: #95a5a6;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 668px) {
   .tour-card {
-    flex-direction: column;
+    flex-direction: column; /* الصورة فوق المحتوى في الشاشات الصغيرة */
   }
-
+  
   .tour-image-container {
     width: 100%;
-    height: 240px;
+    height: 500px;
   }
-
+  .tour-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+  
   .tour-content {
     width: 100%;
-    padding: 2rem;
   }
-
-  .tour-details {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .book-button {
-    max-width: 100%;
+  
+  .tour-title {
+    font-size: 1.5rem;
   }
 }

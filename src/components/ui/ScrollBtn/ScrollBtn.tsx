@@ -6,7 +6,7 @@ const ScrollBtn: React.FC = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            console.log("scrollY:", window.scrollY);
+            
             setIsVisible(window.scrollY > 250);
         };
 

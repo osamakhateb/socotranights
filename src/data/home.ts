@@ -13,6 +13,13 @@ export const heroContent: HeroData = {
     backgroundImage: "/assets/images/hero/tube.jpg"
 };
 
+export const heroContentcard: HeroData = {
+    title: "Discover the Magic of Socotra",
+    subtitle: "Experience authentic, tailor-made adventures",
+    buttonText: "BOOK NOW",
+    backgroundImage: "/assets/images/hero/tube.jpg"
+};
+
 export const HeroTours: HeroData = {
     title: "Our Tours & Experiences",
     subtitle: "Discover the magic of Socotra Island through our carefully crafted adventures",

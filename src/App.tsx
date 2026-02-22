@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
 import Navbar from './components/ui/Navbar/Navbar'
@@ -9,6 +9,7 @@ import About from './pages/About'
 import ScrollBtn from './components/ui/ScrollBtn/ScrollBtn'
 import Footer from './components/ui/Footer/Footer'
 import colors from './colors'
+import SingelCard from './pages/SingelCard'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation()
@@ -22,7 +23,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <Router>
+    <>
       <ScrollToTop />
 
       <div className="App">
@@ -35,14 +36,15 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/tours" element={<Tours />} />
+          <Route path="/tours/" element={<Tours />} />
+          <Route path="/tour/:id" element={<SingelCard />} />
           <Route path="/about" element={<About />} />
         </Routes>
 
         <Footer />
         <ScrollBtn />
       </div>
-    </Router>
+    </>
   )
 }
 
