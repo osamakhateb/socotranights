@@ -1,66 +1,77 @@
-/* import React from "react";
-import "./CardsSection.css";
-
-interface Card {
-    title: string;
-    description: string;
-    icon?: React.ReactNode;
-}
-
-interface CardsSectionProps {
-    mainTitle: string;
-    mainDescription?: string;
-    cards: Card[];
-}
-
-const CardsSection: React.FC<CardsSectionProps> = ({ mainTitle, mainDescription, cards }) => {
-    return (
-        <section className="cards-section">
-            <div className="cards-container">
-                <div className="cards-header">
-                    <h2>{mainTitle}</h2>
-                    {mainDescription && <p>{mainDescription}</p>}
-                </div>
-
-                <div className="cards-grid">
-                    {cards.map((card, index) => (
-                        <div key={index} className="card">
-                            {card.icon && <div className="card-icon">{card.icon}</div>}
-                            <h3 className="card-title">{card.title}</h3>
-                            <p className="card-description">{card.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-    );
-};
-
-export default CardsSection;
- */
-
-
-
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./CardsSection.css";
 
 export interface Card {
     id: number;
-    image: string;
+    image_url: string;
 }
 
 interface CardsSectionProps {
     mainTitle: string;
     mainDescription?: string;
-    cards: Card[];
+    // جعل cards اختيارياً لأننا سنجلبه من API
+    cards?: Card[];
 }
 
 const CardsSection: React.FC<CardsSectionProps> = ({
     mainTitle,
     mainDescription,
-    cards,
+    cards: propCards, // نغير الاسم لتجنب التضارب
 }) => {
+    const [cards, setCards] = useState<Card[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchGallery = async () => {
+            try {
+                const response = await axios.get('https://dash.socotra-secrets.com/api/gallery');
+                
+                setCards(response.data.data);
+                setError(null);
+            } catch (err) {
+                setError('فشل في تحميل الصور');
+                console.error('Error fetching gallery:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGallery();
+    }, []);
+
+    // نستخدم الكاردات من الـ API إذا لم يتم تمريرها كـ props
+    const displayCards = propCards || cards;
+
+    if (loading) {
+        return (
+            <section className="cards-section">
+                <div className="cards-container">
+                    <div className="cards-header">
+                        <h2>{mainTitle}</h2>
+                        {mainDescription && <p>{mainDescription}</p>}
+                    </div>
+                    <div className="loading">جاري التحميل...</div>
+                </div>
+            </section>
+        );
+    }
+
+    if (error) {
+        return (
+            <section className="cards-section">
+                <div className="cards-container">
+                    <div className="cards-header">
+                        <h2>{mainTitle}</h2>
+                        {mainDescription && <p>{mainDescription}</p>}
+                    </div>
+                    <div className="error">{error}</div>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section className="cards-section">
             <div className="cards-container">
@@ -73,8 +84,8 @@ const CardsSection: React.FC<CardsSectionProps> = ({
                     {cards.map((card) => (
                         <div key={card.id} className="card">
                             <img
-                                src={card.image}
-                                alt="card image"
+                                src={card.image_url}
+                                alt={`gallery image ${card.id}`}
                                 className="card-image"
                             />
                         </div>

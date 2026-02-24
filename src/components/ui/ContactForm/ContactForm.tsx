@@ -1,206 +1,209 @@
-
-import React, { useState } from 'react';
-import type { FormEvent } from 'react';
-import { type ContactFormData, type FormField } from '../../../data/contactData/contact.types';
 import './ContactForm.css';
+import { useState } from 'react';
 
-interface ContactFormProps extends ContactFormData {
-    onSubmit?: (data: Record<string, string>) => void;
-    loading?: boolean;
-    successMessage?: string;
-    errorMessage?: string;
-}
+const ContactForm = () => {
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
-const ContactForm: React.FC<ContactFormProps> = ({
-    fields,
-    submitButtonText = 'SEND MESSAGE',
-    formTitle,
-    formDescription,
-    showLabels = true,
-    layout = 'vertical',
-    apiEndpoint,
-    onSubmit,
-    loading = false,
-    successMessage,
-    errorMessage
-}) => {
-    const [formData, setFormData] = useState<Record<string, string>>({});
-    const [errors, setErrors] = useState<Record<string, string>>({});
+  // UI state
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
+  interface Errors {
+    name?: string;
+    email?: string;
+    message?: string;
+    form?: string;
+    [key: string]: string | undefined;
+  }
+  const [errors, setErrors] = useState<Errors>({});
 
-    React.useEffect(() => {
-        const initialData: Record<string, string> = {};
-        fields.forEach(field => {
-            if (field.defaultValue) {
-                initialData[field.id] = field.defaultValue;
-            }
+  // Handle input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear field error when user types
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  // Validate form
+  const validateForm = () => {
+    const newErrors: Errors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+    setSuccess('');
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/inquiries', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle validation errors from backend
+        if (data.errors) {
+          const backendErrors: Errors = {};
+          Object.keys(data.errors).forEach(key => {
+            backendErrors[key] = data.errors[key][0];
+          });
+          setErrors(backendErrors);
+          throw new Error('Validation failed');
+        }
+        throw new Error(data.message || 'Something went wrong');
+      }
+
+      // Success
+      setSuccess('Thank you for your message. We will get back to you soon!');
+      setFormData({ name: '', email: '', message: '' });
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSuccess('');
+      }, 5000);
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      if (!errors.name && !errors.email && !errors.message) {
+        setErrors({ 
+          form: (error instanceof Error ? error.message : 'Failed to send message. Please try again.') 
         });
-        setFormData(initialData);
-    }, [fields]);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const handleChange = (id: string, value: string) => {
-        setFormData(prev => ({ ...prev, [id]: value }));
-        if (errors[id]) {
-            setErrors(prev => ({ ...prev, [id]: '' }));
-        }
-    };
+  return (
+    <div className="contact-form-container">
+      <div className="form-header">
+        <h2 className="form-title">Get In Touch</h2>
+        <p className="form-description">
+          Have a question or want to work together? Send us a message and we'll respond as soon as possible.
+        </p>
+      </div>
 
-    const validateField = (field: FormField, value: string): string => {
-        if (field.required && !value.trim()) {
-            return `${field.label} is required`;
-        }
+      <form className="contact-form" onSubmit={handleSubmit} noValidate>
+        <div className="form-fields vertical">
+          <div className="form-field-group">
+            <label className="form-label" htmlFor="name">
+              Name <span className="required-star">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className={`form-input ${errors.name ? 'error' : ''}`}
+              placeholder="Your full name"
+              value={formData.name}
+              onChange={handleChange}
+              disabled={loading}
+            />
+            {errors.name && <span className="error-message">{errors.name}</span>}
+          </div>
 
-        if (field.validation === 'email' && value) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                return 'Please enter a valid email address';
-            }
-        }
+          <div className="form-field-group">
+            <label className="form-label" htmlFor="email">
+              Email <span className="required-star">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className={`form-input ${errors.email ? 'error' : ''}`}
+              placeholder="your.email@example.com"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={loading}
+            />
+            {errors.email && <span className="error-message">{errors.email}</span>}
+          </div>
 
-        if (field.maxLength && value.length > field.maxLength) {
-            return `Maximum ${field.maxLength} characters allowed`;
-        }
+          <div className="form-field-group">
+            <label className="form-label" htmlFor="message">
+              Message <span className="required-star">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              className={`form-input ${errors.message ? 'error' : ''}`}
+              placeholder="Your message here..."
+              value={formData.message}
+              onChange={handleChange}
+              disabled={loading}
+            />
+            {errors.message && <span className="error-message">{errors.message}</span>}
+          </div>
 
-        return '';
-    };
+          {errors.form && (
+            <div className="error-message" style={{ textAlign: 'center' }}>
+              {errors.form}
+            </div>
+          )}
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
+          {success && (
+            <div className="success-message">
+              {success}
+            </div>
+          )}
 
-        const newErrors: Record<string, string> = {};
-        let isValid = true;
-
-        fields.forEach(field => {
-            const error = validateField(field, formData[field.id] || '');
-            if (error) {
-                newErrors[field.id] = error;
-                isValid = false;
-            }
-        });
-
-        setErrors(newErrors);
-
-        if (!isValid) return;
-        //هون انا فيني ضيف الapi
-        if (apiEndpoint) {
-            try {
-                const response = await fetch(apiEndpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to submit form');
-                }
-
-                const result = await response.json();
-                console.log('Form submitted successfully:', result);
-
-                setFormData({});
-
-                if (onSubmit) {
-                    onSubmit(formData);
-                }
-            } catch (error) {
-                console.error('Error submitting form:', error);
-            }
-        } else if (onSubmit) {
-            onSubmit(formData);
-        }
-    };
-
-    const renderField = (field: FormField) => {
-        const commonProps = {
-            id: field.id,
-            name: field.id,
-            value: formData[field.id] || '',
-            onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-                handleChange(field.id, e.target.value),
-            placeholder: field.placeholder,
-            required: field.required,
-            disabled: field.disabled || loading,
-            className: `form-input ${errors[field.id] ? 'error' : ''}`,
-        };
-
-        switch (field.type) {
-            case 'textarea':
-                return (
-                    <textarea
-                        {...commonProps}
-                        rows={field.rows || 4}
-                    />
-                );
-
-            case 'select':
-                return (
-                    <select {...commonProps}>
-                        <option value="">{field.placeholder || `Select ${field.label}`}</option>
-                        {field.options?.map(option => (
-                            <option key={option} value={option}>
-                                {option}
-                            </option>
-                        ))}
-                    </select>
-                );
-
-            default:
-                return (
-                    <input
-                        {...commonProps}
-                        type={field.type}
-                        maxLength={field.maxLength}
-                    />
-                );
-        }
-    };
-
-    return (
-        <div className={`contact-form-container ${layout}`}>
-            {(formTitle || formDescription) && (
-                <div className="form-header">
-                    {formTitle && <h2 className="form-title">{formTitle}</h2>}
-                    {formDescription && <p className="form-description">{formDescription}</p>}
-                </div>
-            )}
-
-            <form className="contact-form" onSubmit={handleSubmit}>
-                <div className={`form-fields ${layout}`}>
-                    {fields.map(field => (
-                        <div key={field.id} className="form-field-group">
-                            {showLabels && (
-                                <label htmlFor={field.id} className="form-label">
-                                    {field.label}
-                                    {field.required && <span className="required-star"> *</span>}
-                                </label>
-                            )}
-                            {renderField(field)}
-                            {errors[field.id] && (
-                                <span className="error-message">{errors[field.id]}</span>
-                            )}
-                        </div>
-                    ))}
-                </div>
-
-                <button
-                    type="submit"
-                    className="submit-button"
-                    disabled={loading}
-                >
-                    {loading ? 'SENDING...' : submitButtonText}
-                </button>
-
-                {successMessage && (
-                    <div className="success-message">{successMessage}</div>
-                )}
-
-                {errorMessage && (
-                    <div className="error-message">{errorMessage}</div>
-                )}
-            </form>
+          <button 
+            type="submit" 
+            className="submit-button"
+            disabled={loading}
+          >
+            {loading ? 'Sending...' : 'Send Message'}
+          </button>
         </div>
-    );
+      </form>
+    </div>
+  );
 };
 
-export default ContactForm; 
+export default ContactForm;

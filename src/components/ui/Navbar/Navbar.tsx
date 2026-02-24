@@ -1,14 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 import "./Navbar.css";
-
-type NavbarProps = {
-    colors: {
-        primary: string;
-        secondary: string;
-    };
-};
 
 const navItems = [
     { name: "Home", path: "/" },
@@ -16,7 +8,13 @@ const navItems = [
     { name: "About", path: "/about" },
 ];
 
-const Navbar = ({ colors }: NavbarProps) => {
+interface NavbarProps {
+    Color: string;
+    language: 'en' | 'ru';
+    setLanguage: (lang: 'en' | 'ru') => void;
+}
+
+const Navbar = ({ Color, language, setLanguage }: NavbarProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -29,8 +27,15 @@ const Navbar = ({ colors }: NavbarProps) => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    // دالة تغيير اللغة
+    const handleLanguageChange = (lang: 'en' | 'ru') => {
+        setLanguage(lang);
+        setMenuOpen(false);
+    };
+
     return (
-        <nav className="navbar" style={{ backgroundColor: colors.primary }}>
+        <nav className="navbar" style={{ backgroundColor: Color }}>
             <div className="navbar-container">
 
                 <div className="navbar-left">
@@ -59,22 +64,28 @@ const Navbar = ({ colors }: NavbarProps) => {
                 <div className="navbar-right">
                     <div className="language-buttons">
                         <button
-                            className="lang-btn en-btn"
+                            className={`lang-btn en-btn ${language === 'en' ? 'active-lang' : ''}`}
+                            onClick={() => handleLanguageChange('en')}
                             style={{
-                                backgroundColor: "rgba(255,255,255,0.2)",
-                                color: colors.secondary,
+                                backgroundColor: language === 'en' ? Color : "rgba(255,255,255,0.2)",
+                                color: language === 'en' ? '#fff' : Color,
+                                opacity: language === 'en' ? 1 : 0.7,
+                                fontWeight: language === 'en' ? 'bold' : 'normal'
                             }}
                         >
                             <span className="flag">🇺🇸</span> EN
                         </button>
                         <button
-                            className="lang-btn it-btn"
+                            className={`lang-btn ur-btn ${language === 'ru' ? 'active-lang' : ''}`}
+                            onClick={() => handleLanguageChange('ru')}
                             style={{
-                                backgroundColor: "rgba(255,255,255,0.3)",
-                                color: colors.secondary,
+                                backgroundColor: language === 'ru' ? Color : "rgba(255,255,255,0.3)",
+                                color: language === 'ru' ? '#fff' : Color,
+                                opacity: language === 'ru' ? 1 : 0.7,
+                                fontWeight: language === 'ru' ? 'bold' : 'normal'
                             }}
                         >
-                            <span className="flag">🇮🇹</span> IT
+                            <span className="flag">🇵🇰</span> UR
                         </button>
                     </div>
                 </div>
@@ -106,16 +117,24 @@ const Navbar = ({ colors }: NavbarProps) => {
                         </ul>
                         <div className="mobile-language-buttons">
                             <button
-                                className="lang-btn en-btn"
-                                style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
+                                className={`lang-btn en-btn ${language === 'en' ? 'active-lang' : ''}`}
+                                onClick={() => handleLanguageChange('en')}
+                                style={{
+                                    backgroundColor: language === 'en' ? Color : "rgba(255,255,255,0.2)",
+                                    color: language === 'en' ? '#fff' : Color
+                                }}
                             >
                                 <span className="flag">🇺🇸</span> EN
                             </button>
                             <button
-                                className="lang-btn it-btn"
-                                style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+                                className={`lang-btn ru-btn ${language === 'ru' ? 'active-lang' : ''}`}
+                                onClick={() => handleLanguageChange('ru')}
+                                style={{
+                                    backgroundColor: language === 'ru' ? Color : "rgba(255,255,255,0.3)",
+                                    color: language === 'ru' ? '#fff' : Color
+                                }}
                             >
-                                <span className="flag">🇮🇹</span> IT
+                                <span className="flag">🇵🇰</span> RU
                             </button>
                         </div>
                     </div>

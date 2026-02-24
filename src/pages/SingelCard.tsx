@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios'; // إضافة import axios
 import './SingleTrip.css';
 
 interface SubTrip {
@@ -24,33 +25,39 @@ interface TripData {
   sub_trips: SubTrip[];
 }
 
-export default function SingleTrip() {
+interface HomeProps {
+    language: 'en' | 'ru';  // تعديل إلى 'ru' للروسية
+}
+
+export default function SingleTrip({ language }: HomeProps) {
+
   const { id } = useParams<{ id: string }>();
   const [trip, setTrip] = useState<TripData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeDay, setActiveDay] = useState<number>(1);
 
+  const API_BASE_URL = 'https://dash.socotra-secrets.com/api';
 
-  const API_BASE_URL = 'http://127.0.0.1:8000/api';
-
- const fetchTripById = async (id: string) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/trips/${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching trip:', error);
-    throw error;
-  }
-};
+  const fetchTripById = async (id: string, lang: string) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/trips/${id}`, {
+        params: { lang }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching trip:', error);
+      throw error;
+    }
+  };
 
   useEffect(() => {
     const loadTrip = async () => {
       try {
         setLoading(true);
-        const response = await fetchTripById(id!);
+        const response = await fetchTripById(id!, language); // تمرير اللغة الحالية
         setTrip(response.data);
+        setActiveDay(1); // إعادة تعيين اليوم النشط إلى اليوم الأول
         setError(null);
       } catch (err) {
         setError('فشل في تحميل بيانات الرحلة');
@@ -63,13 +70,59 @@ export default function SingleTrip() {
     if (id) {
       loadTrip();
     }
-  }, [id]);
+  }, [id, language]); // إضافة language إلى مصفوفة التبعيات
+
+  // ترجمة النصوص الثابتة حسب اللغة
+  const translations = {
+    en: {
+      loading: "Loading trip...",
+      error: "Error",
+      tripNotFound: "Trip not found",
+      aboutTrip: "About the trip",
+      viewOnMap: "🗺️ View on map",
+      itinerary: "Trip itinerary",
+      day: "Day",
+      bookNow: "Book your trip now",
+      pricePerPerson: "Price per person",
+      included: "✅ Included:",
+      accommodation: "Accommodation and meals",
+      guide: "Professional tour guide",
+      transport: "All transportation",
+      bookButton: "Book now",
+      notAvailable: "Not available",
+      unavailableMessage: "This trip is currently not available for booking",
+      duration: "Duration",
+      price: "Price"
+    },
+    ru: {
+      loading: "Загрузка тура...",
+      error: "Ошибка",
+      tripNotFound: "Тур не найден",
+      aboutTrip: "О туре",
+      viewOnMap: "🗺️ Посмотреть на карте",
+      itinerary: "Программа тура",
+      day: "День",
+      bookNow: "Забронировать сейчас",
+      pricePerPerson: "Цена за человека",
+      included: "✅ Включено:",
+      accommodation: "Проживание и питание",
+      guide: "Профессиональный гид",
+      transport: "Все трансферы",
+      bookButton: "Забронировать",
+      notAvailable: "Недоступно",
+      unavailableMessage: "Этот тур временно недоступен для бронирования",
+      duration: "Длительность",
+      price: "Цена"
+    }
+  };
+
+  const t = translations[language];
 
   if (loading) {
     return (
       <div className="loading-container">
         <div className="loader"></div>
-        <p>جاري تحميل الرحلة...</p>
+        <p>{t.loading}</p>
       </div>
     );
   }
@@ -77,8 +130,8 @@ export default function SingleTrip() {
   if (error || !trip) {
     return (
       <div className="error-container">
-        <h2>خطأ</h2>
-        <p>{error || 'الرحلة غير موجودة'}</p>
+        <h2>{t.error}</h2>
+        <p>{error || t.tripNotFound}</p>
       </div>
     );
   }
@@ -89,15 +142,15 @@ export default function SingleTrip() {
       <section className="trip-hero">
         <div className="trip-hero-image">
           <img 
-            src={`http://127.0.0.1:8000/storage/${trip.main_image}`} 
+            src={trip.main_image}
             alt={trip.title} 
           />
           <div className="trip-hero-overlay">
             <div className="trip-hero-content">
               <h1>{trip.title}</h1>
               <div className="trip-meta">
-                <span className="trip-duration">⏱️ {trip.duration}</span>
-                <span className="trip-price">💰 {trip.price_per_person} ₽ للشخص</span>
+                <span className="trip-duration">⏱️ {t.duration}: {trip.duration}</span>
+                <span className="trip-price">💰 {t.price}: {trip.price_per_person} ₽</span>
               </div>
             </div>
           </div>
@@ -110,7 +163,7 @@ export default function SingleTrip() {
           {/* العمود الأيمن: الوصف والمعلومات */}
           <div className="trip-main-content">
             <div className="trip-info-card">
-              <h2>عن الرحلة</h2>
+              <h2>{t.aboutTrip}</h2>
               <p className="trip-full-description">{trip.description}</p>
               
               {trip.google_map_link && (
@@ -120,14 +173,14 @@ export default function SingleTrip() {
                   rel="noopener noreferrer"
                   className="map-button"
                 >
-                  🗺️ عرض الموقع على الخريطة
+                  {t.viewOnMap}
                 </a>
               )}
             </div>
 
             {/* جدول أيام الرحلة */}
             <div className="trip-itinerary">
-              <h2>جدول الرحلة</h2>
+              <h2>{t.itinerary}</h2>
               <div className="days-navigation">
                 {trip.sub_trips.map((subTrip) => (
                   <button
@@ -135,7 +188,7 @@ export default function SingleTrip() {
                     className={`day-tab ${activeDay === subTrip.order ? 'active' : ''}`}
                     onClick={() => setActiveDay(subTrip.order)}
                   >
-                    اليوم {subTrip.order}
+                    {t.day} {subTrip.order}
                   </button>
                 ))}
               </div>
@@ -148,7 +201,7 @@ export default function SingleTrip() {
                 >
                   <div className="day-image">
                     <img 
-                      src={`http://127.0.0.1:8000/storage/${subTrip.sub_image}`} 
+                      src={subTrip.sub_image}
                       alt={subTrip.sub_title} 
                     />
                   </div>
@@ -174,25 +227,25 @@ export default function SingleTrip() {
           {/* العمود الأيسر: بطاقة الحجز */}
           <div className="trip-sidebar">
             <div className="booking-card">
-              <h3>احجز رحلتك الآن</h3>
+              <h3>{t.bookNow}</h3>
               <div className="price-display">
-                <span className="price-label">السعر للشخص</span>
+                <span className="price-label">{t.pricePerPerson}</span>
                 <span className="price-value">{trip.price_per_person} ₽</span>
               </div>
               <div className="booking-details">
-                <p>✅ {trip.duration}</p>
-                <p>✅ شامل الإقامة والوجبات</p>
-                <p>✅ مرشد سياحي متخصص</p>
-                <p>✅ جميع وسائل النقل</p>
+                <p>{t.included}</p>
+                <p>✅ {t.accommodation}</p>
+                <p>✅ {t.guide}</p>
+                <p>✅ {t.transport}</p>
               </div>
               <button 
                 className={`book-button ${trip.is_selectable ? '' : 'disabled'}`}
                 disabled={!trip.is_selectable}
               >
-                {trip.is_selectable ? 'احجز الآن' : 'غير متاح حالياً'}
+                {trip.is_selectable ? t.bookButton : t.notAvailable}
               </button>
               {!trip.is_selectable && (
-                <p className="unavailable-message">هذه الرحلة غير متاحة للحجز حالياً</p>
+                <p className="unavailable-message">{t.unavailableMessage}</p>
               )}
             </div>
           </div>

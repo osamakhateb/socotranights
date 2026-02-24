@@ -9,7 +9,11 @@ import { toursContactForm } from '../data/contactData/contactFormData';
 import { heroContent } from '../data/home';
 import { cardsData } from '../data/homeCardsData';
 
-const Home = () => {
+interface HomeProps {
+    language: 'en' | 'ru';
+}
+
+const Home = ({ language }: HomeProps) => {
     const homeCards = cardsData.home;
 
     const handleFormSubmit = async (formData: Record<string, string>) => {
@@ -33,18 +37,14 @@ const Home = () => {
             <HeroSection data={heroContent} />
             <div className="content-wrapper">
                 <SocotraSection />
-                <ToursSection />
+                <ToursSection  language={language} />
                 <TripInfo />
                 <Faq />
                 <CardsSection
                     mainTitle={homeCards.title}
                     mainDescription={homeCards.description}
-                    cards={homeCards.cards}
                 />
-                <ContactForm
-                    {...toursContactForm}
-                    onSubmit={handleFormSubmit}
-                />
+                <ContactForm/>
             </div>
         </div>
     );

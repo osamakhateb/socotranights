@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
                             {data.title}
                         </p>
 
-                        <div className="footer-social">
+                        {/* <div className="footer-social">
                             {data.socialLinks.map(link => (
                                 <a
                                     key={link.platform}
@@ -47,7 +47,8 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
                                     {socialIcons[link.platform] || null}
                                 </a>
                             ))}
-                        </div>
+                        </div> */}
+
                     </div>
 
                     <div className="footer-center">
@@ -59,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
                     </div>
 
                     <div className="footer-right">
-                        <div className="contact-row">
+                        {/* <div className="contact-row">
                             <FaWhatsapp />
                             <span>{data.contact.phoneLabel}:</span>
                             <a
@@ -68,12 +69,12 @@ const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
                             >
                                 {data.contact.phone}
                             </a>
-                        </div>
+                        </div> */}
 
                         <div className="contact-row">
                             <span>{data.contact.emailLabel}:</span>
                             <a href={`mailto:${data.contact.email}`}>
-                                {data.contact.email}
+                                {/* {data.contact.email} */}tour@socotra-secrets.com
                             </a>
                         </div>
                     </div>

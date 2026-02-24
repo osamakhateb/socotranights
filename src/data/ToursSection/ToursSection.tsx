@@ -19,7 +19,13 @@ interface Tory {
   is_selectable: number;
 }
 
-const ToursSection = () => {
+  interface HomeProps {
+    language: 'en' | 'ru';
+}
+
+const ToursSection = ({ language }: HomeProps) => {
+
+
 
   const [trips, setTrips] = useState<Tory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +35,7 @@ const ToursSection = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/trips');
+        const response = await axios.get('https://dash.socotra-secrets.com/api/trips?lang=' + language);
         setTrips(response.data.data);
         console.log(response.data.data)
         setLoading(false);
@@ -40,7 +46,7 @@ const ToursSection = () => {
     };
 
     fetchUsers();
-  }, []);
+  }, [language]);
 
 
   return (

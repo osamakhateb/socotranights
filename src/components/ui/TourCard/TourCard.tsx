@@ -9,7 +9,7 @@ interface TourCardProps {
   duration: string;
   main_image: string;
   google_map_link: string;
-  is_selectable: number | string; // السماح بأن يكون string أو number
+  is_selectable: number | string;
   created_at?: string;
   updated_at?: string;
 }
@@ -24,12 +24,7 @@ const TourCard = ({
   google_map_link,
   is_selectable,
 }: TourCardProps) => {
-  // تحويل القيمة إلى رقم للمقارنة الآمنة
   const isAvailable = Number(is_selectable) === 1;
-  
-  // للتشخيص - يمكنك إزالته بعد التأكد من العمل
-  console.log(`Tour ${id}: is_selectable =`, is_selectable, '| isAvailable =', isAvailable);
-
   return (
     <div className={`tour-card ${!isAvailable ? 'tour-card-unavailable' : ''}`}>
       <div className="tour-image-container">
@@ -40,29 +35,24 @@ const TourCard = ({
           </div>
         )}
       </div>
-
       <div className="tour-content">
         <h3 className="tour-title">{title}</h3>
-        
         <p className="tour-description">{description}</p>
-
-        {/* معلومات إضافية من الـ Response */}
         <div className="tour-additional-info">
           {google_map_link && (
             <div className="info-item">
-              <span className="info-label">🗺️ الموقع:</span>
+              <span className="info-label">🗺️ google_map_link:</span>
               <a 
                 href={google_map_link} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="map-link"
               >
-                عرض على الخريطة
+               map
               </a>
             </div>
           )}
         </div>
-
         <div className="tour-details">
           <div className="price-duration">
             <div className="tour-price">
@@ -72,7 +62,6 @@ const TourCard = ({
               {duration}
             </div>
           </div>
-
           {isAvailable ? (
             <Link 
               to={`/tour/${id}`}
@@ -93,5 +82,4 @@ const TourCard = ({
     </div>
   );
 };
-
 export default TourCard;
