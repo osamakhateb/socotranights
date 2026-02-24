@@ -55,7 +55,6 @@ export default About;
 import HeroSection from '../components/ui/Hero/Hero';
 import CardsSection from "../components/ui/CardsSection/CardsSection";
 import ContactForm from '../components/ui/ContactForm/ContactForm';
-import { toursContactForm } from '../data/contactData/contactFormData';
 import { cardsData } from '../data/homeCardsData';
 import OurStory from "../components/ui/Story/Story";
 import { ourStoryData } from '../data/ourStoryData';
@@ -64,21 +63,6 @@ import { aboutData } from '../data/teamData';
 import { HeroAbout } from '../data/home';
 
 const About = () => {
-    const handleFormSubmit = async (formData: Record<string, string>) => {
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-            //const data = await res.json();
-            await res.json();
-            alert('Thank you for your message! We will contact you soon.');
-        } catch (error) {
-            console.error(error);
-            alert('Failed to send message. Try again later.');
-        }
-    };
 
     const aboutCards = cardsData.about;
 
@@ -95,13 +79,9 @@ const About = () => {
             <CardsSection
                 mainTitle={aboutCards.title}
                 mainDescription={aboutCards.description}
-                cards={aboutCards.cards}
             />
             <TeamSection data={aboutData} />
-            <ContactForm
-                {...toursContactForm}
-                onSubmit={handleFormSubmit}
-            />
+            <ContactForm/>
         </div>
     );
 };

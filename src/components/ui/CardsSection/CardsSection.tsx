@@ -81,7 +81,7 @@ const CardsSection: React.FC<CardsSectionProps> = ({
                 </div>
 
                 <div className="cards-grid">
-                    {cards.map((card) => (
+                    {displayCards.map((card) => (
                         <div key={card.id} className="card">
                             <img
                                 src={card.image_url}

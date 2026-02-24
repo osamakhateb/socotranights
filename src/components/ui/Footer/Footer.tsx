@@ -1,26 +1,26 @@
-import {
-    FaFacebookF,
-    FaInstagram,
-    FaTwitter,
-    FaWhatsapp
-} from 'react-icons/fa';
-import { SiTelegram, SiVk } from 'react-icons/si';
+// import {
+//     FaFacebookF,
+//     FaInstagram,
+//     FaTwitter,
+//     FaWhatsapp
+// } from 'react-icons/fa';
+// import { SiTelegram, SiVk } from 'react-icons/si';
 import { useFooter } from '../../hooks/useFooter';
 import './Footer.css';
-import type { JSX } from 'react';
+// import type { JSX } from 'react';
 
 interface FooterProps {
     apiUrl?: string;
 }
 
-const socialIcons: Record<string, JSX.Element> = {
-    whatsapp: <FaWhatsapp />,
-    telegram: <SiTelegram />,
-    instagram: <FaInstagram />,
-    vk: <SiVk />,
-    facebook: <FaFacebookF />,
-    twitter: <FaTwitter />,
-};
+// const socialIcons: Record<string, JSX.Element> = {
+//     whatsapp: <FaWhatsapp />,
+//     telegram: <SiTelegram />,
+//     instagram: <FaInstagram />,
+//     vk: <SiVk />,
+//     facebook: <FaFacebookF />,
+//     twitter: <FaTwitter />,
+// };
 
 const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
     const { data } = useFooter(apiUrl);

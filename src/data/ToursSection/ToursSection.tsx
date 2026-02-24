@@ -28,8 +28,8 @@ const ToursSection = ({ language }: HomeProps) => {
 
 
   const [trips, setTrips] = useState<Tory[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Removed unused loading state
+  // const [error, setError] = useState(null);
 
 
   useEffect(() => {
@@ -38,10 +38,10 @@ const ToursSection = ({ language }: HomeProps) => {
         const response = await axios.get('https://dash.socotra-secrets.com/api/trips?lang=' + language);
         setTrips(response.data.data);
         console.log(response.data.data)
-        setLoading(false);
+        // setLoading(false); // Removed unused loading state update
       } catch (err : any) {
-        setError(err.message);
-        setLoading(false);
+        // setError(err.message);
+        // setLoading(false);
       }
     };
 

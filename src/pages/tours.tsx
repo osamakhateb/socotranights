@@ -6,7 +6,6 @@ import HeroSection from '../components/ui/Hero/Hero';
 import CardsSection from "../components/ui/CardsSection/CardsSection";
 import ScrollBtn from '../components/ui/ScrollBtn/ScrollBtn';
 import ContactForm from '../components/ui/ContactForm/ContactForm';
-import { toursContactForm } from '../data/contactData/contactFormData';
 import { cardsData } from '../data/homeCardsData';
 import { HeroTours } from '../data/home';
 
@@ -21,24 +20,6 @@ const Tours = () => {
     const [tours, setTours] = useState<Tour[]>([]);
     const tourCards = cardsData.tours;
 
-    const handleFormSubmit = async (formData: Record<string, string>) => {
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-            /* const data = await res.json();*/
-            await res.json(); // ⬅️ بدون تخزين (إذا كنت لا تفحص الرد)
-
-            alert('Thank you for your inquiry! We will contact you soon.');
-        } catch (error) {
-            console.error(error);
-            alert('Failed to send message. Try again later.');
-        }
-    };
-
-    // fetch tours from API
     useEffect(() => {
         const fetchTours = async () => {
             try {
@@ -60,7 +41,6 @@ const Tours = () => {
             <CardsSection
                 mainTitle={tourCards.title}
                 mainDescription={tourCards.description}
-                cards={tourCards.cards}
             />
 
             <div className="tours-list">
@@ -74,8 +54,6 @@ const Tours = () => {
             </div>
 
             <ContactForm
-                {...toursContactForm}
-                onSubmit={handleFormSubmit}
             />
         </div>
     );
