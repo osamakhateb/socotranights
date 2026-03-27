@@ -1,9 +1,12 @@
 import type { CardsSectionData } from "../data/home";
 export type CardsPageKey = "home" | "tours" | "about";
+
 export const cardsData: Record<CardsPageKey, CardsSectionData> = {
     home: {
-        title: "Why Choose Us?",
-        description: "We are locals sharing Socotra’s beauty",
+        title_en: "Why Choose Us?",
+        title_ru: "Почему выбирают нас?",
+        description_en: "We are locals sharing Socotra's beauty",
+        description_ru: "Мы — местные жители, которые делятся красотой Сокотры",
         cards: [
             { id: 1, image: "/assets/images/hero/tube.jpg" },
             { id: 2, image: "/assets/images/hero/tube.jpg" },
@@ -17,8 +20,10 @@ export const cardsData: Record<CardsPageKey, CardsSectionData> = {
     },
 
     tours: {
-        title: "Our Tours",
-        description: "Explore Socotra through unique experiences",
+        title_en: "Our Tours",
+        title_ru: "Наши туры",
+        description_en: "Explore Socotra through unique experiences",
+        description_ru: "Исследуйте Сокотру через уникальные впечатления",  
         cards: [
             { id: 1, image: "/assets/images/hero/tube.jpg" },
             { id: 2, image: "/assets/images/hero/tube.jpg" },
@@ -32,8 +37,10 @@ export const cardsData: Record<CardsPageKey, CardsSectionData> = {
     },
 
     about: {
-        title: "About Socotra",
-        description: "A land like no other on Earth",
+        title_en: "About Socotra",
+        title_ru: "О Сокотре", 
+        description_en: "A land like no other on Earth",
+        description_ru: "Уникальная земля на Земле",  
         cards: [
             { id: 1, image: "/assets/images/hero/tube.jpg" },
             { id: 2, image: "/assets/images/hero/tube.jpg" },

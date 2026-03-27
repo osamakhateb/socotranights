@@ -4,9 +4,10 @@ import { tripInfoStaticData } from '../../data/tripInfo.data';
 
 interface UseTripInfoProps {
     apiUrl?: string;
+    language: 'en' | 'ru';
 }
 
-export const useTripInfo = ({ apiUrl }: UseTripInfoProps = {}) => {
+export const useTripInfo = ({ apiUrl }: UseTripInfoProps) => {
     const [data, setData] = useState<TripInfoData | null>(null);
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import FaqItem from "../../context/Title";
 import colors from "../../../colors";
-import FaqData from "../../../data/home";
+import { FaqData, FaqSectionData } from "../../../data/home";
 import "./Faq.css";
 
 export interface Faq {
@@ -9,44 +9,26 @@ export interface Faq {
     answer: string;
 }
 
-const Faq: React.FC = () => {
-    /*  const [faqs, setFaqs] = useState<Faq[]>(FaqData); 
-     const [openIndex, setOpenIndex] = useState<number | null>(null);
-     const [loading, setLoading] = useState<boolean>(false);
-     const [error, setError] = useState<string | null>(null); */
-    const [faqs] = useState<Faq[]>(FaqData);
+interface FaqProps {
+    language: 'en' | 'ru';
+}
+
+const Faq: React.FC<FaqProps> = ({ language }) => {
+    const [faqs, setFaqs] = useState<Faq[]>([]);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [loading] = useState<boolean>(false);
     const [error] = useState<string | null>(null);
 
     useEffect(() => {
-        //  لما نضيف API  فك التعليق واحذف FaqData من useState
-        /*
-        const fetchFaqs = async () => {
-            try {
-            setLoading(true);
-            const res = await fetch("/api/faqs");
-    
-            if (!res.ok) {
-                throw new Error("Failed to fetch FAQs");
-            }
-    
-            const data: Faq[] = await res.json();
-            setFaqs(data);
-            } catch (err) {
-            setError("Something went wrong");
-            } finally {
-            setLoading(false);
-            }
-        };
-    
-        fetchFaqs();
-        */
-    }, []);
+        // Load FAQs based on language
+        setFaqs(FaqData[language]);
+    }, [language]);
 
     const handleToggle = (index: number) => {
         setOpenIndex(prev => (prev === index ? null : index));
     };
+
+    const sectionData = FaqSectionData[language];
 
     return (
         <section className="faq-container">
@@ -58,18 +40,18 @@ const Faq: React.FC = () => {
                             className="faq-main-title"
                             style={{ color: colors.textDark }}
                         >
-                            How To Get To Socotra
+                            {sectionData.mainTitle}
                         </h1>
 
                         <h2
                             className="faq-subtitle"
                             style={{ color: colors.textMuted }}
                         >
-                            Flights & Travel Tips
+                            {sectionData.subtitle}
                         </h2>
                     </div>
 
-                    {loading && <p>Loading...</p>}
+                    {loading && <p>{language === 'en' ? 'Loading...' : 'Загрузка...'}</p>}
                     {error && <p>{error}</p>}
 
                     {!loading && !error && (
@@ -90,7 +72,7 @@ const Faq: React.FC = () => {
                 <div className="faq-right-section">
                     <img
                         src="/assets/images/hero/SocotraSection.jpg"
-                        alt="Socotra"
+                        alt={language === 'en' ? "Socotra" : "Сокотра"}
                         className="faq-image"
                     />
                 </div>

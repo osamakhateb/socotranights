@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HeroSection from '../components/ui/Hero/Hero';
@@ -11,14 +9,24 @@ import { HeroTours } from '../data/home';
 
 interface Tour {
     id: string;
-    title: string;
-    description: string;
+    title_en: string;
+    title_ru: string;
+    description_en: string;
+    description_ru: string;
     image?: string;
 }
 
-const Tours = () => {
+interface ToursProps {
+    language: 'en' | 'ru';
+}
+
+const Tours: React.FC<ToursProps> = ({ language }) => {
     const [tours, setTours] = useState<Tour[]>([]);
-    const tourCards = cardsData.tours;
+
+    const tourCards = {
+        title: language === 'en' ? cardsData.tours.title_en : cardsData.tours.title_ru,
+        description: language === 'en' ? cardsData.tours.description_en : cardsData.tours.description_ru
+    };
 
     useEffect(() => {
         const fetchTours = async () => {
@@ -35,7 +43,7 @@ const Tours = () => {
 
     return (
         <div className="tours-page">
-            <HeroSection data={HeroTours} />
+            <HeroSection data={HeroTours} language={language} />
             <ScrollBtn />
 
             <CardsSection
@@ -46,15 +54,15 @@ const Tours = () => {
             <div className="tours-list">
                 {tours.map(tour => (
                     <div key={tour.id} className="tour-item">
-                        <h3>{tour.title}</h3>
-                        <p>{tour.description}</p>
-                        <Link to={`/tours/${tour.id}`}>View Details</Link>
+                        <h3>{language === 'en' ? tour.title_en : tour.title_ru}</h3>
+                        <p>{language === 'en' ? tour.description_en : tour.description_ru}</p>
+                        <Link to={`/tours/${tour.id}`}>
+                            {language === 'en' ? 'View Details' : 'Подробнее'}
+                        </Link>
                     </div>
                 ))}
             </div>
-
-            <ContactForm
-            />
+            <ContactForm language={language} />
         </div>
     );
 };

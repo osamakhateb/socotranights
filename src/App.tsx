@@ -11,6 +11,7 @@ import Footer from './components/ui/Footer/Footer'
 import SingelCard from './pages/SingelCard'
 import axios from 'axios'
 
+
 // مكون اللودر الجديد
 const BeautifulLoader = () => {
   return (
@@ -153,11 +154,11 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Home language={language} />} />
-          <Route path="/tours/" element={<Tours />} />
+          <Route path="/tours/" element={<Tours language={language} />} />
           <Route path="/tour/:id" element={<SingelCard  language={language} />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About language={language} />} />
         </Routes>
-        <Footer />
+            <Footer language={language} />
         <ScrollBtn />
       </div>
     </main>

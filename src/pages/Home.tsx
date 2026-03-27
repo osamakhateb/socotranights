@@ -13,21 +13,24 @@ interface HomeProps {
 }
 
 const Home = ({ language }: HomeProps) => {
-    const homeCards = cardsData.home;
+    const homeCards = {
+        title: language === 'en' ? cardsData.home.title_en : cardsData.home.title_ru,
+        description: language === 'en' ? cardsData.home.description_en : cardsData.home.description_ru
+    };
 
     return (
         <div className="home-page">
-            <HeroSection data={heroContent} />
+            <HeroSection data={heroContent} language={language} />
             <div className="content-wrapper">
-                <SocotraSection />
-                <ToursSection  language={language} />
-                <TripInfo />
-                <Faq />
+                <SocotraSection language={language} />
+                <ToursSection language={language} />
+                <TripInfo language={language} />
+                <Faq language={language} />
                 <CardsSection
                     mainTitle={homeCards.title}
                     mainDescription={homeCards.description}
                 />
-                <ContactForm/>
+                <ContactForm language={language} />
             </div>
         </div>
     );

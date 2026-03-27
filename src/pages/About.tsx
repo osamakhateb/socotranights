@@ -1,57 +1,3 @@
-/* import HeroSection from '../components/ui/HeroTours/HeroTours';
-import CardsSection from "../components/ui/CardsSection/CardsSection";
-import ContactForm from '../components/ui/ContactForm/ContactForm';
-import { toursContactForm } from '../data/contactData/contactFormData';
-import { cardsData } from '../data/homeCardsData';
-import OurStory from "../components/ui/Story/Story";
-import { ourStoryData } from "../data/ourStoryData";
-import TeamSection from '../components/ui/TeamSection/TeamSection';
-import { aboutData } from '../data/teamData';
-import { HeroAbout } from '../data/home';
-
-const About = () => {
-    const handleFormSubmit = (formData: Record<string, string>) => {
-        console.log('About inquiry submitted:', formData);
-        alert('Thank you for your message! We will contact you soon.');
-    };
-
-    const aboutCards = cardsData.about;
-    // هون ممكن ابعت معلومات 
-    // fetch('/api/tours-inquiry', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(formData)
-    // });
-    return (
-        <div className="about-page">
-            <HeroSection data={HeroAbout} />
-            <OurStory
-                title={ourStoryData.title}
-                subtitle={ourStoryData.subtitle}
-                description={ourStoryData.description}
-                quote={ourStoryData.quote}
-                imageUrl={ourStoryData.imageUrl}
-            />
-            <CardsSection
-                mainTitle={aboutCards.title}
-                mainDescription={aboutCards.description}
-                cards={aboutCards.cards}
-            />
-            <TeamSection data={aboutData} />
-
-            <ContactForm
-                {...toursContactForm}
-                onSubmit={handleFormSubmit}
-            />
-        </div>
-    );
-};
-
-export default About; 
- */
-
-
-
 import HeroSection from '../components/ui/Hero/Hero';
 import CardsSection from "../components/ui/CardsSection/CardsSection";
 import ContactForm from '../components/ui/ContactForm/ContactForm';
@@ -61,27 +7,32 @@ import { ourStoryData } from '../data/ourStoryData';
 import TeamSection from '../components/ui/TeamSection/TeamSection';
 import { aboutData } from '../data/teamData';
 import { HeroAbout } from '../data/home';
+import Faq from '../components/ui/Faq/Faq';
 
-const About = () => {
+const About = ({ language }: { language: 'en' | 'ru' }) => {
 
-    const aboutCards = cardsData.about;
+    const aboutCards = {
+        title: language === 'en' ? cardsData.about.title_en : cardsData.about.title_ru,
+        description: language === 'en' ? cardsData.about.description_en : cardsData.about.description_ru
+    };
 
     return (
         <div className="about-page">
-            <HeroSection data={HeroAbout} />
+            <HeroSection data={HeroAbout} language={language} />
             <OurStory
-                title={ourStoryData.title}
-                subtitle={ourStoryData.subtitle}
-                description={ourStoryData.description}
-                quote={ourStoryData.quote}
+                title={language === 'en' ? ourStoryData.title_en : ourStoryData.title_ru}
+                subtitle={language === 'en' ? ourStoryData.subtitle_en : ourStoryData.subtitle_ru}
+                description={language === 'en' ? ourStoryData.description_en : ourStoryData.description_ru}
+                quote={language === 'en' ? ourStoryData.quote_en : ourStoryData.quote_ru}
                 imageUrl={ourStoryData.imageUrl}
             />
             <CardsSection
                 mainTitle={aboutCards.title}
                 mainDescription={aboutCards.description}
             />
-            <TeamSection data={aboutData} />
-            <ContactForm/>
+            <TeamSection data={aboutData} language={language} />
+            <Faq language={language} />
+            <ContactForm language={language} />
         </div>
     );
 };

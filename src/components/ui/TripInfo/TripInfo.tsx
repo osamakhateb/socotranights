@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { useTripInfo } from '../../hooks/useTripInfo';
 import './TripInfo.css';
 
@@ -58,6 +58,79 @@ const TripInfo: React.FC = () => {
                                 {data.assistance.buttonText}
                             </button>
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default TripInfo;
+ */
+
+// components/ui/TripInfo/TripInfo.tsx
+import React from 'react';
+import { useTripInfo } from '../../hooks/useTripInfo';
+import './TripInfo.css';
+
+interface TripInfoProps {
+    language: 'en' | 'ru';
+}
+
+const IncludedIcon = () => <span className="title-icon">✓</span>;
+const NotIncludedIcon = () => <span className="title-icon">✕</span>;
+
+const TripInfo: React.FC<TripInfoProps> = ({ language }) => {
+    const { data } = useTripInfo({ language });
+
+    if (!data) return null;
+
+    // اختيار النصوص حسب اللغة
+    const title = language === 'en' ? data.title_en : data.title_ru;
+    const includedTitle = language === 'en' ? data.sections.included.title_en : data.sections.included.title_ru;
+    const notIncludedTitle = language === 'en' ? data.sections.notIncluded.title_en : data.sections.notIncluded.title_ru;
+
+    return (
+        <section className="trip-info-section">
+            <div className="trip-info-container">
+
+                <h2 className="trip-info-main-title">
+                    {title}
+                </h2>
+
+                <div className="trip-info-grid">
+
+                    <div className="trip-column">
+                        <h3 className="section-title with-icon">
+                            <IncludedIcon />
+                            {includedTitle}
+                        </h3>
+
+                        <ul className="info-list">
+                            {data.sections.included.items.map(item => (
+                                <li key={item.id} className="info-item">
+                                    <span className="icon check">✓</span>
+                                    <span>{language === 'en' ? item.text_en : item.text_ru}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="trip-column">
+                        <h3 className="section-title with-icon">
+                            <NotIncludedIcon />
+                            {notIncludedTitle}
+                        </h3>
+
+                        <ul className="info-list">
+                            {data.sections.notIncluded.items.map(item => (
+                                <li key={item.id} className="info-item">
+                                    <span className="icon cross">✕</span>
+                                    <span>{language === 'en' ? item.text_en : item.text_ru}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
                 </div>
