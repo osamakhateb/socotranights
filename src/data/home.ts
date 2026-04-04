@@ -14,7 +14,7 @@ export const heroContent: HeroData = {
     title_ru: "Открой тайны Сокотры",
     subtitle_ru: "Где простота встречается с приключением",
     buttonText: "BOOK NOW",
-    backgroundImage: "/assets/images/hero/tube.jpg"
+    backgroundImage: "/assets/images/hero/socotrahome4.jpg"
 };
 
 export const HeroTours: HeroData = {
@@ -22,15 +22,15 @@ export const HeroTours: HeroData = {
     subtitle_en: "",
     title_ru: "Остров тайн и приключений",
     subtitle_ru: "",
-    backgroundImage: "/assets/images/hero/SocotraSection.jpg"
+    backgroundImage: "/assets/images/hero/socotrahome5.jpg"
 };
 
 export const HeroAbout: HeroData = {
-    title_en: " Embrace simplicity in Socotra, where every moment is an adventure! ",
+    title_en: " Embrace simplicity in Socotra where every moment is an adventure! ",
     subtitle_en: "",
-    title_ru: "Окунитесь в простоту Сокотры, где каждый момент — это приключение!",
+    title_ru: "Окунитесь в простоту Сокотры где каждый момент — это приключение!",
     subtitle_ru: "",
-    backgroundImage: "/assets/images/hero/SocotraSection.jpg"
+    backgroundImage: "/assets/images/hero/socotrahome3.jpg"
 };
 
 
@@ -118,9 +118,9 @@ export interface ImageCard {
 }
 
 export interface CardsSectionData {
-    title_en: string;      
-    title_ru: string;      
-    description_en?: string; 
-    description_ru?: string; 
+    title_en: string;
+    title_ru: string;
+    description_en?: string;
+    description_ru?: string;
     cards: ImageCard[];
 }
