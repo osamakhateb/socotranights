@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import "./Story.css";
 import type { OurStoryData1 } from "../../../data/ourStoryData";

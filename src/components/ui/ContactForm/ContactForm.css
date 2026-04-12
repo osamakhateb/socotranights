@@ -26,7 +26,7 @@
 }
 
 .contact-form {
-    background: white;
+    background:#4684a8b7;
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -58,26 +58,26 @@
 .form-label {
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: #fcfcfc;
     font-size: 0.95rem;
 }
 
 .required-star {
-    color: #dc3545;
+    color: #5a5555;
 }
 
 .form-input {
     padding: 0.875rem 1rem;
-    border: 2px solid #e1e5e9;
+    border: 2px solid #628db8;
     border-radius: 8px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background-color: #f8f9fa;
+    background-color: #26506811;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #3b82f6;
+    border-color: #515458;
     background-color: white;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
@@ -87,7 +87,7 @@
 }
 
 .form-input::placeholder {
-    color: #94a3b8;
+    color: #d7dbe0;
 }
 
 textarea.form-input {
@@ -106,7 +106,7 @@ select.form-input {
 }
 
 .submit-button {
-    background: #3b82f6;
+    background: #4684a8b7;
     color: white;
     border: none;
     padding: 1rem 2.5rem;
@@ -120,7 +120,7 @@ select.form-input {
 }
 
 .submit-button:hover:not(:disabled) {
-    background: #2563eb;
+    background: #4c79dbb9;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }

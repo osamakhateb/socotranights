@@ -1,10 +1,10 @@
 // colors.ts
 const colors = {
-    primary: "#232a49",
+    primary: "#4684a8b7",/* 72d1e2b7 */
     secondary: "#ffffff",
 
     brownDark: "#302e3b",      
-    lightBg: "#3498db",        
+    lightBg: "#356da183",        
     beige: "#cfc6b8",          
 
     textDark: "#ffffff",
@@ -14,7 +14,7 @@ const colors = {
 
     blueMain: "#3498db",
     blueDark: "#2980b9",
-    blueDarker: "#1c6ea4",
+    blueDarker: "#a7d6f5",
 
     success: "#0a7710",
 

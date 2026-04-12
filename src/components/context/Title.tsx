@@ -1,6 +1,6 @@
 import colors from "../../colors";
-import plusIcon from "../../../public/assets/images/logo/logo.png";
-import closeIcon from "../../../public/assets/images/logo/logo.png";
+import plusIcon from "../../../public/assets/images/logo/socotra1-02.png";
+import closeIcon from "../../../public/assets/images/logo/socotra1-02.png";
 
 interface FaqItemProps {
     question: string;

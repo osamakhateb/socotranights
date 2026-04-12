@@ -79,8 +79,8 @@
 }
 
 .faq-toggle-icon {
-    width: 28px;
-    height: 28px;
+    width: 58px;
+    height: auto;
     user-select: none;
     transition: transform 0.25s ease;
 }

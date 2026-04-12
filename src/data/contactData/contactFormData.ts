@@ -37,5 +37,4 @@ export const toursContactForm = {
 
 export const contactForms = {
     tours: toursContactForm,
-    // فيني ضيف هون
 } as const;
