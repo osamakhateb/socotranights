@@ -5,9 +5,10 @@ import './Footer.css';
 interface FooterProps {
     apiUrl?: string;
     language: 'en' | 'ru';
+    navcolor?: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ apiUrl, language }) => {
+const Footer: React.FC<FooterProps> = ({ apiUrl, language , navcolor }) => {
     const { data } = useFooter({ apiUrl, language });
 
     if (!data) return null;
@@ -23,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ apiUrl, language }) => {
     const logoAlt = language === 'en' ? data.logo?.alt_en : data.logo?.alt_ru;
 
     return (
-        <footer className="footer">
+        <footer className="footer" style={{background : navcolor}}>
             <div className="footer-container">
 
                 <div className="footer-top">

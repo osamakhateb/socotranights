@@ -73,7 +73,7 @@ const Navbar = ({ Color, language, setLanguage }: NavbarProps) => {
                                 fontWeight: language === 'en' ? 'bold' : 'normal'
                             }}
                         >
-                            <span className="flag">🇺🇸</span> EN
+                        EN
                         </button>
                         <button
                             className={`lang-btn ur-btn ${language === 'ru' ? 'active-lang' : ''}`}
@@ -85,7 +85,7 @@ const Navbar = ({ Color, language, setLanguage }: NavbarProps) => {
                                 fontWeight: language === 'ru' ? 'bold' : 'normal'
                             }}
                         >
-                            <span className="flag">🇵🇰</span> UR
+                        UR
                         </button>
                     </div>
                 </div>

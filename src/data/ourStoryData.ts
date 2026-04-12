@@ -10,6 +10,14 @@ export interface OurStoryData {
     imageUrl: string;
 
 }
+export interface OurStoryData1 {
+    title: string;
+    subtitle?: string;
+    description: string;
+    quote: string;
+    imageUrl: string;
+
+}
 
 export const ourStoryData: OurStoryData = {
     title_en: "Our Story",

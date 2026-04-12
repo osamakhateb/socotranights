@@ -158,7 +158,7 @@ function App() {
           <Route path="/tour/:id" element={<SingelCard  language={language} />} />
           <Route path="/about" element={<About language={language} />} />
         </Routes>
-            <Footer language={language} />
+            <Footer language={language} navcolor={navcolor}/>
         <ScrollBtn />
       </div>
     </main>
