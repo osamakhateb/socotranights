@@ -1,69 +1,3 @@
-/* 
-import { useFooter } from '../../hooks/useFooter';
-import './Footer.css';
-interface FooterProps {
-    apiUrl?: string;
-}
-
-const Footer: React.FC<FooterProps> = ({ apiUrl }) => {
-    const { data } = useFooter(apiUrl);
-
-    return (
-        <footer className="footer">
-            <div className="footer-container">
-
-                <div className="footer-top">
-                    <div className="footer-left">
-                        <p className="footer-description">
-                            {data.title}
-                        </p>
-
-                    
-
-                    </div>
-
-                    <div className="footer-center">
-                        <img
-                            src={data.logo?.url}
-                            alt={data.logo?.alt}
-                            className="footer-logo"
-                        />
-                    </div>
-
-                    <div className="footer-right">
-                    
-
-                        <div className="contact-row">
-                            <span>{data.contact.emailLabel}:</span>
-                            <a href={`mailto:${data.contact.email}`}>
-                            tour@socotra-secrets.com
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="footer-divider" />
-
-                <div className="footer-bottom">
-                    <span>{data.copyrightText}</span>
-
-                    <div className="footer-links">
-                        <a href="/terms">{data.links.terms}</a>
-                        <span>|</span>
-                        <a href="/privacy">{data.links.privacy}</a>
-                        <span>|</span>
-                        <span>{data.links.developer}</span>
-                    </div>
-                </div>
-
-            </div>
-        </footer>
-    );
-};
-
-export default Footer;
- */
-
 // components/ui/Footer/Footer.tsx
 import { useFooter } from '../../hooks/useFooter';
 import './Footer.css';
@@ -78,7 +12,6 @@ const Footer: React.FC<FooterProps> = ({ apiUrl, language }) => {
 
     if (!data) return null;
 
-    // اختيار النصوص حسب اللغة
     const title = language === 'en' ? data.title_en : data.title_ru;
     const buttonText = language === 'en' ? data.buttonText_en : data.buttonText_ru;
     const phoneLabel = language === 'en' ? data.contact.phoneLabel_en : data.contact.phoneLabel_ru;

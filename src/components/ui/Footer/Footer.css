@@ -1,7 +1,7 @@
 .footer {
     background-color: #232a49;
     color: #f5f5f5;
-    padding: 90px 40px;
+    padding: 20px 40px;
     font-family: 'Georgia', serif;
 }
 
@@ -23,7 +23,7 @@
 
 .footer-description {
     max-width: 400px;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #cfc6b8;
+    color: #cfb8b8;
     transition: all 0.3s ease;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .footer-logo {
-    width: 90px;
+    width: 240px;
     margin-bottom: 10px;
 }
 
@@ -73,8 +73,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
-    margin-bottom: 10px;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .contact-row a {
@@ -83,7 +82,7 @@
 }
 
 .footer-divider {
-    margin: 40px 0;
+    margin: 30px 0;
     height: 1px;
     background-color: rgba(255, 255, 255, 0.2);
 }

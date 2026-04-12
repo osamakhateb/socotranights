@@ -71,7 +71,7 @@ const Faq: React.FC<FaqProps> = ({ language }) => {
 
                 <div className="faq-right-section">
                     <img
-                        src="/assets/images/hero/SocotraSection.jpg"
+                        src="/assets/images/hero/faq.jpg"
                         alt={language === 'en' ? "Socotra" : "Сокотра"}
                         className="faq-image"
                     />

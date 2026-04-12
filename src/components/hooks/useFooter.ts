@@ -1,37 +1,5 @@
 import { useEffect, useState } from 'react';
 import type { FooterData } from '../../data/footer.types';
-
-/* const defaultFooterData: FooterData = {
-    title: "Discover the secrets of Socotra Where simplicity meets adventure",
-    buttonText: "Discover Socotra’s Magic",
-
-    contact: {
-        phone: "+971507112961",
-        email: "hello@socotranights.com",
-        phoneLabel: "WhatsApp",
-        emailLabel: "Email"
-    },
-    socialLinks: [
-        { platform: 'whatsapp', url: '#' },
-        { platform: 'telegram', url: '#' },
-        { platform: 'instagram', url: '#' },
-        { platform: 'vk', url: '#' }
-    ],
-
-    copyrightText: "© 2026 Socotra Nights. All rights reserved.",
-
-    links: {
-        terms: "Terms & Conditions",
-        privacy: "Privacy Policy",
-        developer: "Developed by Techific"
-    },
-
-    logo: {
-        url: "/assets/images/logo/logo.png",
-        alt: ""
-    }
-}; */
-// في ملف useFooter أو ملف منفصل
 const defaultFooterData: FooterData = {
     title_en: "Discover the secrets of Socotra Where simplicity meets adventure",
     title_ru: "Откройте секреты Сокотры, где простота встречается с приключениями",
@@ -62,7 +30,7 @@ const defaultFooterData: FooterData = {
         developer_ru: "Разработано Techific"
     },
     logo: {
-        url: "/assets/images/logo/logo.png",
+        url: "/assets/images/logo/socotra2.svg",
         alt_en: "Socotra Secrets Logo",
         alt_ru: "Логотип Секреты Сокотры"
     }

@@ -45,9 +45,21 @@
     align-items: center;
 }
 
-.logo {
+/* .logo {
     height: 50px;
     width: auto;
+} */
+.logo {
+    height: 200px;
+    width: auto;
+    transition: all 0.3s ease;
+    object-fit: contain;
+    display: block;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    opacity: 0.95;
 }
 
 .nav-link {
@@ -83,7 +95,7 @@
     align-items: center;
     gap: 8px;
     transition: all 0.2s ease;
-    color:#ffffff;
+    color: #ffffff;
 }
 
 .lang-btn:hover {
@@ -111,7 +123,7 @@
     .nav-items,
     .navbar-right {
         display: none;
-        
+
     }
 
     .hamburger {
@@ -151,16 +163,17 @@
         display: flex;
         gap: 40px;
     }
-    .lang-btn{
+
+    .lang-btn {
         font-size: 40px;
     }
-    
+
 }
 
 
 @media (max-width: 480px) {
     .logo {
-        height: 40px;
+        height: 100px;
     }
 
     .nav-items {

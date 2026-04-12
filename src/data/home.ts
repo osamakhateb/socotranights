@@ -14,7 +14,7 @@ export const heroContent: HeroData = {
     title_ru: "Открой тайны Сокотры",
     subtitle_ru: "Где простота встречается с приключением",
     buttonText: "BOOK NOW",
-    backgroundImage: "/assets/images/hero/home2.jpg"
+    backgroundImage: "/assets/images/hero/2.jpg"
 };
 
 export const HeroTours: HeroData = {
@@ -22,13 +22,13 @@ export const HeroTours: HeroData = {
     subtitle_en: "",
     title_ru: "Остров тайн и приключений",
     subtitle_ru: "",
-    backgroundImage: "/assets/images/hero/home3.jpg"
+    backgroundImage: "/assets/images/hero/home2.jpg"
 };
 
 export const HeroAbout: HeroData = {
-    title_en: " Embrace simplicity in Socotra where every moment is an adventure! ",
+    title_en: " Embrace simplicity in Socotra where every moment is an adventure",
     subtitle_en: "",
-    title_ru: "Окунитесь в простоту Сокотры где каждый момент — это приключение!",
+    title_ru: "Окунитесь в простоту Сокотры где каждый момент — это приключение",
     subtitle_ru: "",
     backgroundImage: "/assets/images/hero/home1.jpg"
 };
@@ -53,7 +53,7 @@ export const socotraData: SectionData = {
     description_ru: `Добро пожаловать в Socotra Secrets — место, где приключение встречается с подлинностью.
                         Исследуйте нетронутую красоту острова Сокотра глазами его жителей.
                         Почувствуйте нашу богатую культуру, потрясающие пейзажи и тепло нашего гостеприимства.`,
-    imageUrl: "/assets/images/hero/SocotraSection.jpg",
+    imageUrl: "/assets/images/hero/experience2.jpg",
 };
 
 

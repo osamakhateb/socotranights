@@ -40,7 +40,7 @@ const Navbar = ({ Color, language, setLanguage }: NavbarProps) => {
 
                 <div className="navbar-left">
                     <img
-                        src="/assets/images/logo/fullLogo.png"
+                        src="/assets/images/logo/socotra2.svg"
                         alt="Logo"
                         className="logo"
                     />
