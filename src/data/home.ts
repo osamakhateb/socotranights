@@ -14,7 +14,7 @@ export const heroContent: HeroData = {
     title_ru: "Открой тайны Сокотры",
     subtitle_ru: "Где простота встречается с приключением",
     buttonText: "BOOK NOW",
-    backgroundImage: "/assets/images/hero/socotrahome4.jpg"
+    backgroundImage: "/assets/images/hero/home2.jpg"
 };
 
 export const HeroTours: HeroData = {
@@ -22,7 +22,7 @@ export const HeroTours: HeroData = {
     subtitle_en: "",
     title_ru: "Остров тайн и приключений",
     subtitle_ru: "",
-    backgroundImage: "/assets/images/hero/socotrahome5.jpg"
+    backgroundImage: "/assets/images/hero/home3.jpg"
 };
 
 export const HeroAbout: HeroData = {
@@ -30,7 +30,7 @@ export const HeroAbout: HeroData = {
     subtitle_en: "",
     title_ru: "Окунитесь в простоту Сокотры где каждый момент — это приключение!",
     subtitle_ru: "",
-    backgroundImage: "/assets/images/hero/socotrahome3.jpg"
+    backgroundImage: "/assets/images/hero/home1.jpg"
 };
 
 
